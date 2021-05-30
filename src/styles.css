@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    background-color: tomato;
+    color: ghostwhite;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

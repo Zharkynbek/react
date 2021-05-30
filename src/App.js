@@ -1,8 +1,11 @@
 import React from "react"
-import PaintingList from "./components/PaintingList";
+import PaintingList from "./components/PaintingList/PaintingList";
 import paintings from "./paintings.json"
 import Logo from "./components/Logo";
-import Panel from "./components/Panel"
+import Panel from "./components/Panel/Panel"
+import ColorPicker from "./components/ColorPicker/ColorPicker"
+import Notification from "./components/Notification/Notification"
+import Layout from "./components/Layout/Layout";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -12,11 +15,16 @@ const colorPickerOptions = [
   { label: "pink", color: "#E91E63" },
   { label: "indigo", color: "#3F51B5" },
 ];
-console.log(colorPickerOptions);
 
 const App = () => {
-    return (
-      <div>
+  return (
+    <div>
+      <Layout>
+        <ColorPicker options={colorPickerOptions} />
+
+        <Notification text="so good" type="success" />
+        <Notification text="so bad" type="error" />
+
         <Panel title="last news">
           <p>
             lorem ipsums sdklöfjsdlk sdofsadöoifh disofjsiodfjs sdiofjsdiofj
@@ -34,8 +42,9 @@ const App = () => {
         </Panel>
         <Logo text={<h1>First Component</h1>} />
         <PaintingList paintings={paintings} />
-      </div>
-    );
+      </Layout>
+    </div>
+  );
 }
 
 export default App;
