@@ -9,6 +9,7 @@ class Form extends Component {
     licence: false,
   };
 
+
   nameIdInput = shortId.generate();
 
   numberIdInput = shortId.generate();
@@ -44,7 +45,7 @@ class Form extends Component {
     this.reset();
   };
 
-  handleLicenceChange = e => {
+  handleLicenceChange = (e) => {
     console.log(e.target.checked);
     this.setState({ licence: e.currentTarget.checked });
   };
@@ -119,7 +120,9 @@ class Form extends Component {
           />
           Prinimayu uslovie
         </label>
-        <button type="submit" disabled={!this.state.licence}>SEND MESSAGE</button>
+        <button type="submit" disabled={!this.state.licence}>
+          SEND MESSAGE
+        </button>
       </form>
     );
   }

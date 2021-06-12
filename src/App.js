@@ -35,6 +35,21 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    console.log("add componentDidMount");
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+    if (parsedTodos) {
+       this.setState({ todos: parsedTodos });
+     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
+
   addTodo = (text) => {
     console.log(text);
     const todo = {
@@ -101,7 +116,7 @@ class App extends Component {
 
   render() {
     const { todos } = this.state;
-    const completedTodoCount = this.calculateCompletedTodos()
+    const completedTodoCount = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
     const totalTodoCount = todos.length;
     return (
