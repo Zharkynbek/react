@@ -13,6 +13,7 @@ import Form from "./components/Form/Form"
 import TodoEditor from "./components/TodoEditor/TodoEditor"
 import shortId from "shortid"
 import Filter from "./components/Filter/Filter"
+import Modal from "./components/Modal/Modal"
 
 
 const colorPickerOptions = [
@@ -33,6 +34,7 @@ class App extends Component {
       { id: "id-4", text: "learn node.js", completed: false },
     ],
     filter: "",
+    showModal: false,
   };
 
   componentDidMount() {
@@ -40,8 +42,8 @@ class App extends Component {
     const todos = localStorage.getItem("todos");
     const parsedTodos = JSON.parse(todos);
     if (parsedTodos) {
-       this.setState({ todos: parsedTodos });
-     }
+      this.setState({ todos: parsedTodos });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -114,15 +116,32 @@ class App extends Component {
     );
   };
 
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
   render() {
-    const { todos } = this.state;
+    const { todos, showModal } = this.state;
     const completedTodoCount = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
     const totalTodoCount = todos.length;
     return (
-      <div>
+      <>
         <DropDown />
-        <Form onSubmit={this.formSubmitHandler} />
+        <button type="button" onClick={this.toggleModal}>
+          Open Modal
+        </button>
+        {showModal && (
+          <Modal>
+            <h1>Welcome to React</h1>
+            <button type="button" onClick={this.toggleModal}>
+              Close
+            </button>
+          </Modal>
+        )}
+        {/* <Form onSubmit={this.formSubmitHandler} /> */}
         {/* <input
           type="text"
           value={this.state.inputValue}
@@ -165,7 +184,7 @@ class App extends Component {
           <Logo text={<h1>First Component</h1>} />
           <PaintingList paintings={paintings} />
         </Layout>
-      </div>
+      </>
     );
   }
 }
