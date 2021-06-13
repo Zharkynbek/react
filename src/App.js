@@ -13,8 +13,10 @@ import Form from "./components/Form/Form"
 import TodoEditor from "./components/TodoEditor/TodoEditor"
 import shortId from "shortid"
 import Filter from "./components/Filter/Filter"
-import Modal from "./components/Modal/Modal"
-
+// import Modal from "./components/Modal/Modal"
+import Clock from "./components/Clock/Clock"
+import Tabs from "./components/Tabs/Tabs"
+import tabs from "./tabs.json"
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -129,19 +131,21 @@ class App extends Component {
     const totalTodoCount = todos.length;
     return (
       <>
+        {showModal && <Clock />}
         <DropDown />
         <button type="button" onClick={this.toggleModal}>
-          Open Modal
+          Open/Close Timer
         </button>
-        {showModal && (
+        <Tabs items={ tabs}/>
+        {/* {showModal && (
           <Modal onClose={this.toggleModal}>
             <h1>Welcome to React</h1>
             <button type="button" onClick={this.toggleModal}>
               Close
             </button>
           </Modal>
-        )}
-        {/* <Form onSubmit={this.formSubmitHandler} /> */}
+        )} */}
+        <Form onSubmit={this.formSubmitHandler} />
         {/* <input
           type="text"
           value={this.state.inputValue}
