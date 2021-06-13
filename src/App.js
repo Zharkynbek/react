@@ -134,7 +134,7 @@ class App extends Component {
           Open Modal
         </button>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>Welcome to React</h1>
             <button type="button" onClick={this.toggleModal}>
               Close
